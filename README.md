@@ -1,3 +1,9 @@
+Theater ID
+1012
+
+https://evening-plateau-54365.herokuapp.com/theatres/1012
+
+
 # Module 3 Code Challenge
 
 ![Example](assets/code-challenge-3.gif)
@@ -28,7 +34,7 @@ When you visit `https://evening-plateau-54365.herokuapp.com/` in your browser, y
 
 Use your assigned id to get the data for all of the showings at your assigned theatre.
 
-GET `https://evening-plateau-54365.herokuapp.com/theatres/:id`
+GET `https://evening-plateau-54365.herokuapp.com/theatres/1012`
 
 Example response:
 ```json
