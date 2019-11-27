@@ -1,4 +1,4 @@
-const theatreId = 1033;
+const theatreId = 1020;
 
 
 // grab global elements from the DOM
@@ -23,9 +23,7 @@ fetch(`https://evening-plateau-54365.herokuapp.com/theatres/${theatreId}`)
 function createMovieCard(movieObj){
     let movieCardDiv = document.createElement("div")
         movieCardDiv.className = "card"
-        
     let ticketsRemaining = movieObj.capacity - movieObj.tickets_sold
-        
 
     //console.log(ticketsRemaining)
         movieCardDiv.innerHTML = `<div class="content">
@@ -42,27 +40,11 @@ function createMovieCard(movieObj){
         ${movieObj.showtime}
         </span>
       </div>
-      <div class="extra content"> `
+      <div class="extra content"> 
 
-      let buyTicketButton = document.createElement("Button")
-            buyTicketButton.className = "ui blue button"
-            buyTicketButton.id = "buy-button"
-            buyTicketButton.innerText = 'Buy Ticket'
+        <div id = "buy-button" class="ui blue button">Buy Ticket</div>
+      </div> `
 
-            buyTicketButton.style.display = (ticketsRemaining <= 1)?buyTicketButton.style.display = "none": buyTicketButton.style.display = ""
-
-            // if (ticketsRemaining <= 0){
-
-            //     buyTicketButton.style.display = "none"
-            // }
-        
-            // else {
-        
-            //     buyTicketButton.style.display = ""
-            // }
-
-      
-      movieCardDiv.append(buyTicketButton)
       allMoviesDiv.append(movieCardDiv)
 
 
@@ -70,12 +52,19 @@ function createMovieCard(movieObj){
       let ticketsRemainingDiv = movieCardDiv.querySelector("#tixs-left")
       
 
-     // let buyTicketButton = movieCardDiv.querySelector("#buy-button")
-      
+      let buyTicketButton = movieCardDiv.querySelector("#buy-button")
+      if (ticketsRemaining <= 0){
+
+        buyTicketButton.style.display = "none"
+    }
+
+    else {
+
+        buyTicketButton.style.display = ""
+    }
       
 
       buyTicketButton.addEventListener("click", (evt) => {
-        buyTicketButton.style.display = (ticketsRemaining <= 1)?buyTicketButton.style.display = "none": buyTicketButton.style.display = ""
           //console.log(`buy ticket for ${movieObj.film.title} of  ${ticketsRemaining} tickets`)
           //
           let showingId = movieObj.id
@@ -112,10 +101,6 @@ function createMovieCard(movieObj){
               //console.log(createdTicket)
               //
               
-              
-         }).catch((error) => {
-            buyTicketButton.style.display = (ticketsRemaining <= 1)?buyTicketButton.style.display = "none": buyTicketButton.style.display = ""
-             
          })
 
  }
