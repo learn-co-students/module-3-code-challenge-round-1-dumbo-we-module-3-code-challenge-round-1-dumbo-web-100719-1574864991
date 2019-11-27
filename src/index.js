@@ -40,9 +40,22 @@ let CreateAndAppendShowingDiv = (showing) => {
   </div>
     `
     let buyButton = showingDiv.querySelector(".blue")
+    let buyButtonContainer = showingDiv.querySelector(".extra")
     buyButton.style.display = (showing.capacity - showing.tickets_sold<= 0 ? "none" : "")
     let description = showingDiv.querySelector(".description")
-    description.innerText = (showing.capacity - showing.tickets_sold<= 0 ? "Sold Out" : `${showing.capacity - showing.tickets_sold} remaining tickets`)
+    description.innerText = (showing.capacity - showing.tickets_sold<= 0 ? "" : `${showing.capacity - showing.tickets_sold} remaining tickets`)
+
+    let soldOutButton = document.createElement("div")
+    soldOutButton.className = "ui red button"
+    soldOutButton.innerText= "Sold Out"
+    soldOutButton.style.display = (showing.capacity - showing.tickets_sold<= 0 ? "" : "none")
+    soldOutButton.addEventListener(`click`, (event) => {
+        alert("Sorry, this show is sold out. Please try one of our other wonderful films.")
+    })
+    buyButtonContainer.append(soldOutButton)
+
+
+
     buyButton.addEventListener(`click`, (event) => {
         showing.tickets_sold+=1
         fetch(postUrl, {
@@ -57,8 +70,9 @@ let CreateAndAppendShowingDiv = (showing) => {
         })
         .then(resp => resp.json())
         .then(json_resp => {
-            description.innerText = (showing.capacity - showing.tickets_sold<= 0 ? "Sold Out" : `${showing.capacity - showing.tickets_sold} remaining tickets`)
+            description.innerText = (showing.capacity - showing.tickets_sold<= 0 ? "" : `${showing.capacity - showing.tickets_sold} remaining tickets`)
             buyButton.style.display = (showing.capacity - showing.tickets_sold<= 0 ? "none" : "")
+            soldOutButton.style.display = (showing.capacity - showing.tickets_sold<= 0 ? "" : "none")
         })
     })
     showingsDiv.append(showingDiv)
