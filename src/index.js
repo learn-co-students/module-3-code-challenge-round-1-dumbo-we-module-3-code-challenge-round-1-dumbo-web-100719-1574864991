@@ -104,11 +104,12 @@ function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extr
       })
         .then(r => r.json())
         .then(json_resp => {
-          console.log(json_resp, descriptionDiv)
+          // console.log(json_resp, descriptionDiv)
           ticketsRemaining = ticketsRemaining - 1
           descriptionDiv.innerText = `${ticketsRemaining} remaining tickets`
           buyTicketDiv.remove()
           extraContentDiv.innerText = 'Sold Out'
+          surpise(showing)
         })
         .catch(err => console.log(err))
 
@@ -133,3 +134,26 @@ function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extr
 // The number of tickets remaining for a showing can be determined by subtracting the current `tickets_sold` from the total `capacity` of the showing.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function surpise(showing) {
+  alert(`Sorry Eric, ${showing.film.title} is sold out!`)
+}
