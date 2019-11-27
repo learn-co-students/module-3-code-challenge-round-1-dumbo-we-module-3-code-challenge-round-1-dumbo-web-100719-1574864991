@@ -26,7 +26,7 @@ When you visit `https://evening-plateau-54365.herokuapp.com/` in your browser, y
 
 #### GET `/theatres/:id`
 
-Use your assigned id to get the data for all of the showings at your assigned theatre.
+<!-- Use your assigned id to get the data for all of the showings at your assigned theatre.
 
 GET `https://evening-plateau-54365.herokuapp.com/theatres/:id`
 
@@ -148,7 +148,7 @@ Example response:
     }
   ]
 }
-```
+``` -->
 
 A theatre has many showings.
 
