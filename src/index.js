@@ -8,7 +8,7 @@ fetch(`https://evening-plateau-54365.herokuapp.com/theatres/1012`)
     theater.showings.forEach(showing => {
       // console.log(showing)
       parseShowingsCard(showing)
-    });
+    })    
   })
   .catch(err => console.log(err))
 
@@ -54,6 +54,7 @@ function parseShowingsCard(showing) {
       extraContentDiv.append(buyTicketDiv)
     } else {
       extraContentDiv.innerText = 'Sold Out'
+      extraContentDiv.style.backgroundColor = "#d95c5c"
     }
 
   cardDiv.append(contentDiv, extraContentDiv)
@@ -64,6 +65,8 @@ function parseShowingsCard(showing) {
   buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extraContentDiv)
 }
 
+
+// would definitely refactor this with time. could put the fetches into a seperate function.
 function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extraContentDiv) {
   // console.log(showing, buyTicketDiv)
 
@@ -84,7 +87,7 @@ function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extr
       })
         .then(r => r.json())
         .then(json_resp => {
-          console.log(json_resp, descriptionDiv)
+          // console.log(json_resp, descriptionDiv)
           ticketsRemaining = ticketsRemaining - 1
           descriptionDiv.innerText = `${ticketsRemaining} remaining tickets`
         })
@@ -105,10 +108,12 @@ function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extr
         .then(r => r.json())
         .then(json_resp => {
           // console.log(json_resp, descriptionDiv)
+          // with time, I would refactor the sold out code so that it's not duplicated
           ticketsRemaining = ticketsRemaining - 1
           descriptionDiv.innerText = `${ticketsRemaining} remaining tickets`
           buyTicketDiv.remove()
           extraContentDiv.innerText = 'Sold Out'
+          extraContentDiv.style.backgroundColor = "#d95c5c"
           surpise(showing)
         })
         .catch(err => console.log(err))
@@ -154,6 +159,54 @@ function buyTicket(showing, buyTicketDiv, descriptionDiv, ticketsRemaining, extr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function surpise(showing) {
-  alert(`Sorry Eric, ${showing.film.title} is sold out!`)
+  alert(`Sorry Eric, ${showing.film.title} is now sold out!`)
 }
+
+
+
+
+// stack overflow to get a random element from an array:
+// var randFilmTitle = showings[Math.floor(Math.random() * myArray.length)];
+
+
+// tried to get a Google Images function working, but had trouble with it. I wanted to set the background image of the page to a random image drawn from keywords from a random film title. 
+// function getRandomImage(showing) {
+
+//   google.load('search', '1')
+//   google.setOnLoadCallback(OnLoad)
+//   var search
+
+//   var keyword = showing.film.title
+
+//     search = new google.search.ImageSearch()
+
+//     search.setSearchCompleteCallback(this, searchComplete, null)
+
+//     search.execute(keyword)
+
+//     if (search.results && search.results.length > 0)
+//     {
+//         var rnd = Math.floor(Math.random() * search.results.length)
+
+//         document.body.style.backgroundImage = url('" + search.results[rnd]['url'] + "');
+//     }
+// }
