@@ -85,7 +85,6 @@ let displayMovie = movieObj =>{
             
             movieTicket.innerText = `${movieObj.tickets_sold}`
             
-            
             // if(movieTicket.tickets_sold === 0){
             //     ticketDivButton.innerText ='SoldOut'
             // }
