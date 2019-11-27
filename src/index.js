@@ -50,7 +50,7 @@ let CreateAndAppendShowingDiv = (showing) => {
     soldOutButton.innerText= "Sold Out"
     soldOutButton.style.display = (showing.capacity - showing.tickets_sold<= 0 ? "" : "none")
     soldOutButton.addEventListener(`click`, (event) => {
-        alert("Sorry, this show is sold out. Please try one of our other wonderful films.")
+        alert("Hi there, this is Nic of nic.it. Sorry, to tell you but this show is sold out. Please try one of our other wonderful films. You'll love it. That's a guarantee from me, Nic of Nic.it, your place for all of my `nickets`, ha see what I did there? I hope you did. Anyway, enjoy the movies. ")
     })
     buyButtonContainer.append(soldOutButton)
 
