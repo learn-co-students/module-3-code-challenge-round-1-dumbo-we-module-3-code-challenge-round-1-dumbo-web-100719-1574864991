@@ -79,3 +79,5 @@ function ticketsLeft(showing, buyTicketDiv, descriptionDiv){
         descriptionDiv.innerText = `${showing.capacity - showing[`tickets_sold`]} remaining tickets`
     }
 }
+
+
